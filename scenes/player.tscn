@@ -289,16 +289,12 @@ script = ExtResource("1_3sb3w")
 
 [node name="Wizard" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-59.7499, -157.25)
+position = Vector2(0, -32)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_q63hu")
 animation = &"idle_left"
 autoplay = "idle_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-60, -136)
+position = Vector2(-1, -10)
 shape = SubResource("CircleShape2D_krpv7")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-60, -141)
-zoom = Vector2(0.565, 0.565)

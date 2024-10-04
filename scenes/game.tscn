@@ -1,45 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://pnhllq6ac702"]
+[gd_scene load_steps=11 format=3 uid="uid://pnhllq6ac702"]
 
 [ext_resource type="PackedScene" uid="uid://b5hpfc2nui1ii" path="res://scenes/Player.tscn" id="1_pt2pq"]
 [ext_resource type="Texture2D" uid="uid://chrkakmihor1i" path="res://assets/Texture/TX Tileset Grass.png" id="2_ryt1t"]
 [ext_resource type="Texture2D" uid="uid://cthjnon8bqw6s" path="res://assets/Texture/TX Plant.png" id="3_5kdvo"]
 [ext_resource type="Texture2D" uid="uid://cyg1tnitug3du" path="res://assets/Texture/TX Props.png" id="4_1fpus"]
 [ext_resource type="PackedScene" uid="uid://ccdhuqcehtvea" path="res://scenes/mushroom.tscn" id="5_76nru"]
-[ext_resource type="Script" path="res://scripts/mushroom.gd" id="6_6rthk"]
-
-[sub_resource type="GDScript" id="GDScript_xakio"]
-script/source = "extends CharacterBody2D
-
-var last_direction = Vector2.ZERO
-
-func _physics_process(_delta):
-	var direction = Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
-	velocity = direction * 2500
-	move_and_slide()
-	
-	if velocity.length() > 0.0:
-		if direction.x < 0:
-			last_direction.x = -1
-			$Wizard.play(\"run_left\")
-		elif direction.x > 0:
-			last_direction.x = 1
-			$Wizard.play(\"run_right\")
-		elif direction.y < 0:
-			if last_direction.x < 0:
-				$Wizard.play(\"run_left\")
-			else:
-				$Wizard.play(\"run_right\")
-		elif direction.y > 0:
-			if last_direction.x < 0:
-				$Wizard.play(\"run_left\")
-			else:
-				$Wizard.play(\"run_right\")
-	else:
-		if last_direction.x < 0:
-			$Wizard.play(\"idle_left\")
-		elif last_direction.x > 0:
-			$Wizard.play(\"idle_right\")
-"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yi8rp"]
 texture = ExtResource("2_ryt1t")
@@ -692,7 +657,11 @@ unique_name_in_owner = true
 z_index = 1
 position = Vector2(1020, 791.667)
 motion_mode = 0
-script = SubResource("GDScript_xakio")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.565, 0.565)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bnsik")
@@ -707,4 +676,3 @@ layer_0/tile_data = PackedInt32Array(6094862, 65540, 4, 6160398, 65540, 5, 62259
 
 [node name="Mushroom" parent="." instance=ExtResource("5_76nru")]
 position = Vector2(867, 641.6)
-script = ExtResource("6_6rthk")

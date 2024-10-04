@@ -4,7 +4,7 @@ var last_direction = Vector2.ZERO
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = direction * 2500
+	velocity = direction * 600
 	move_and_slide()
 	
 	if velocity.length() > 0.0:
