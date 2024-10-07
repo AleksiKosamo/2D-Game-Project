@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://ccdhuqcehtvea"]
+[gd_scene load_steps=74 format=3 uid="uid://ccdhuqcehtvea"]
 
 [ext_resource type="Texture2D" uid="uid://dajwuylprlgas" path="res://assets/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Attack.png" id="1_0we05"]
 [ext_resource type="Script" path="res://scripts/mushroom.gd" id="1_5xafb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyfc78su60gp2" path="res://assets/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Die.png" id="3_u2uq1"]
 [ext_resource type="Texture2D" uid="uid://cvkm78rsll85q" path="res://assets/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Die-right.png" id="4_w3fst"]
 [ext_resource type="Texture2D" uid="uid://bxtasw4ifal28" path="res://assets/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Run.png" id="5_xle0j"]
+[ext_resource type="Texture2D" uid="uid://dvtuhp03rap8n" path="res://assets/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Attack-left.png" id="6_86uv3"]
 [ext_resource type="Texture2D" uid="uid://ckyortpeisluu" path="res://assets/Forest_Monsters_FREE/Mushroom/Mushroom with VFX/Mushroom-Run-right.png" id="6_ti2mt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tkve"]
@@ -191,6 +192,14 @@ region = Rect2(80, 0, 80, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hbbcp"]
 atlas = ExtResource("4_w3fst")
 region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anke1"]
+atlas = ExtResource("6_86uv3")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7141"]
+atlas = ExtResource("2_j7uv0")
+region = Rect2(720, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kai3d"]
 atlas = ExtResource("5_xle0j")
@@ -418,6 +427,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_anke1")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7141")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kai3d")
 }, {
 "duration": 1.0,
@@ -476,10 +501,11 @@ animations = [{
 }]
 
 [node name="Mushroom" type="CharacterBody2D"]
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_5xafb")
 
 [node name="Mushroom" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_tu2au")
-animation = &"run_left"
+animation = &"idle_right"
+autoplay = "idle_right"
