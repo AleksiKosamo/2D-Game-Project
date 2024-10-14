@@ -1,40 +1,35 @@
 extends CharacterBody2D
 
-@onready var player = get_node("/root/Game/Player")
-@onready var mushroom = $"." 
+@onready var health = get_meta("Health")
+
 var last_direction = Vector2.ZERO
+@onready var player = get_node("/root/Game/Player")
 
-func _physics_process(_delta):
-	var player_pos = player.global_position
-	var mushroom_pos = mushroom.global_position
+func take_damage():
+	health -= player.get_meta("Damage")
 	
-	# Reset velocity at the start of the process
-	velocity = Vector2.ZERO
+	if health == 0:
+		queue_free()
 
-	# Calculate velocity based on player position
-	if player_pos.y > mushroom_pos.y:
-		velocity.y = 200
-	elif player_pos.y < mushroom_pos.y:
-		velocity.y = -200
-	
-	if player_pos.x > mushroom_pos.x:
-		velocity.x = 200
-		last_direction = Vector2.RIGHT
-	elif player_pos.x < mushroom_pos.x:
-		velocity.x = -200
-		last_direction = Vector2.LEFT
-	
-	# Move the character based on the calculated velocity
+func _physics_process(_delta: float) -> void:
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * get_meta("Speed")
 	move_and_slide()
-
+	
 	if velocity.length() > 0.0:
-		print(player_pos.x, ", ", mushroom_pos.x)
-		
-		# Only play the run animation if not directly aligned on the x-axis
-		if abs(mushroom_pos.x - player_pos.x) >= 10:
-			%Mushroom.play("run_left" if last_direction == Vector2.LEFT else "run_right")
-		else:
-			# If very close in x but not moving, ensure we don't play running animation
-			%Mushroom.play("idle_right" if last_direction == Vector2.RIGHT else "idle_left")
-	else:
-		%Mushroom.play("attack_right" if last_direction == Vector2.RIGHT else "attack_left")
+		if direction.x < 0:
+			last_direction.x = -1
+			$Mushroom.play("run_left")
+		elif direction.x > 0:
+			last_direction.x = 1
+			$Mushroom.play("run_right")
+		elif direction.y < 0:
+			if last_direction.x < 0:
+				$Mushroom.play("run_left")
+			else:
+				$Mushroom.play("run_right")
+		elif direction.y > 0:
+			if last_direction.x < 0:
+				$Mushroom.play("run_left")
+			else:
+				$Mushroom.play("run_right")
