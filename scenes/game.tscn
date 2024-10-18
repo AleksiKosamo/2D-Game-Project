@@ -678,35 +678,3 @@ position_smoothing_speed = 4.0
 [node name="Mushroom" parent="." instance=ExtResource("5_76nru")]
 unique_name_in_owner = true
 position = Vector2(230.4, 4)
-
-[node name="Mushroom2" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(182, 5.4)
-
-[node name="Mushroom3" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(147.8, 1.8)
-
-[node name="Mushroom4" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(94, -6.8)
-
-[node name="Mushroom5" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(40.6, -5.4)
-
-[node name="Mushroom6" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(66.6, -36)
-
-[node name="Mushroom7" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(136.2, -37.6)
-
-[node name="Mushroom8" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(199, -42.6)
-
-[node name="Mushroom9" parent="." instance=ExtResource("5_76nru")]
-unique_name_in_owner = true
-position = Vector2(162.2, -35.2)

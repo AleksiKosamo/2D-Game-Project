@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c56k12eb0a5pe"]
+[gd_scene load_steps=4 format=3 uid="uid://c56k12eb0a5pe"]
 
 [ext_resource type="Script" path="res://scripts/bow.gd" id="1_bi5c1"]
 [ext_resource type="Texture2D" uid="uid://p1t4ipw7f7eo" path="res://assets/Weapons/Bow01.png" id="1_ox6h8"]
-[ext_resource type="Script" path="res://Scripts/FireRate.gd" id="3_lvify"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oy3tt"]
 radius = 113.0
@@ -31,6 +30,5 @@ rotation = -0.785398
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
-script = ExtResource("3_lvify")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

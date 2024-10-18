@@ -523,3 +523,10 @@ light_mask = 0
 visibility_layer = 3
 position = Vector2(0, 17.7778)
 shape = SubResource("CircleShape2D_4v8m7")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -11.0
+offset_top = 32.0
+offset_right = -2.0
+offset_bottom = 50.0
+scale = Vector2(2.64474, 0.135444)
