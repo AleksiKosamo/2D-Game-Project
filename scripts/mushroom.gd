@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# Define the enemy_killed signal
+signal enemy_killed
+
 # States
 enum State {
 	IDLE_LEFT,
@@ -42,6 +45,7 @@ func die():
 	$Mushroom.play("die_left")
 	
 	await get_tree().create_timer(1.4).timeout
+	emit_signal("enemy_killed")  # Emit the custom signal
 	queue_free()
 
 # Change Animation State

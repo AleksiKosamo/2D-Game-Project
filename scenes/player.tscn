@@ -308,7 +308,7 @@ collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_ypr07")
 metadata/Health = 35.0
-metadata/Damage = 1.0
+metadata/Damage = 3.0
 metadata/Speed = 0.0
 metadata/FireRate = 1.0
 
@@ -348,3 +348,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6inxn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bliu8")
 value = 100.0
 show_percentage = false
+
+[connection signal="health_depleted" from="." to="." method="_on_health_depleted"]
