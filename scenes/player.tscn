@@ -304,8 +304,12 @@ corner_radius_bottom_left = 1
 anti_aliasing_size = 0.21
 
 [node name="Player" type="CharacterBody2D"]
+<<<<<<< HEAD
 collision_layer = 64
 collision_mask = 129
+=======
+collision_layer = 0
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 motion_mode = 1
 script = ExtResource("1_ypr07")
 metadata/Health = 35.0

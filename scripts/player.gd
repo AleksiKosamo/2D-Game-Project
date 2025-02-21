@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Variables
 @onready var health = %Player.get_meta("Health")
 var last_direction = Vector2.ZERO
+<<<<<<< HEAD
 # Player Stats
 var player_level = 1
 var health_base = 100  # Starting health value (adjust this as needed)
@@ -14,6 +15,8 @@ var damage_growth_per_level = 2   # How much damage increases with each level
 var exp = 0  # Current EXP
 var exp_to_next_level = 100  # EXP required to level up
 var exp_gain_per_kill = 50  # EXP gained per enemy kill
+=======
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 
 # States
 enum State {
@@ -26,6 +29,10 @@ var current_state = State.IDLE
 
 signal health_depleted
 
+<<<<<<< HEAD
+=======
+const DAMAGE_RATE = 10
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 const MOVE_SPEED = 600.0
 
 # Apply damage and update health
@@ -33,12 +40,19 @@ func apply_damage(delta):
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 
 	if overlapping_mobs.size() > 0:
+<<<<<<< HEAD
 		health -= damage_base * overlapping_mobs.size() * delta
+=======
+		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 		%ProgressBar.value = health
 		
 		if health <= 0.0:
 			health = 0.0  # Prevent going negative
+<<<<<<< HEAD
 			get_tree().paused = true
+=======
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 			%GameOver.visible = true
 
 # Update the player's animations based on the state and direction
@@ -81,6 +95,7 @@ func _physics_process(delta):
 	# Update animation
 	update_animation()
 
+<<<<<<< HEAD
 # Level Up Function
 func level_up():
 	# Increase level by 1
@@ -126,3 +141,9 @@ func _on_mushroom_enemy_killed() -> void:
 func update_exp_bar():
 	%ExpBar.value = exp
 	%ExpBar.max_value = exp_to_next_level
+=======
+
+func _on_health_depleted() -> void:
+	get_tree().paused = true
+	%Gameover.Visible = true
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912

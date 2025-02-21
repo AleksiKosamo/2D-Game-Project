@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=17 format=4 uid="uid://pnhllq6ac702"]
+=======
+[gd_scene load_steps=16 format=4 uid="uid://pnhllq6ac702"]
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_b3lji"]
 [ext_resource type="PackedScene" uid="uid://b5hpfc2nui1ii" path="res://scenes/player.tscn" id="1_pt2pq"]
@@ -656,9 +660,12 @@ _data = {
 }
 point_count = 5
 
+<<<<<<< HEAD
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apaal"]
 bg_color = Color(0.843137, 0.607843, 0, 1)
 
+=======
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ya74g"]
 a = Vector2(-5.80005, -547.4)
 b = Vector2(-5.80005, 571)
@@ -686,9 +693,13 @@ tile_set = SubResource("TileSet_nc5i7")
 
 [node name="Player" parent="." instance=ExtResource("1_pt2pq")]
 unique_name_in_owner = true
+<<<<<<< HEAD
 metadata/Health = 50.0
 metadata/Damage = 1.0
 metadata/FireRate = 0.1
+=======
+metadata/attack_speed = 0.0
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.55, 0.55)
@@ -701,6 +712,39 @@ unique_name_in_owner = true
 position = Vector2(-807.2, -623.8)
 rotation = 0.00259933
 
+<<<<<<< HEAD
+=======
+[node name="borders" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="borders"]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 5
+position = Vector2(-667.4, 88.3999)
+shape = SubResource("SegmentShape2D_ya74g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="borders"]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 5
+position = Vector2(667.4, 88.3999)
+shape = SubResource("SegmentShape2D_ya74g")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="borders"]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 5
+position = Vector2(-466.2, 631.4)
+shape = SubResource("SegmentShape2D_qpv5k")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="borders"]
+light_mask = 1023
+visibility_layer = 1023
+z_index = 5
+position = Vector2(-466.2, -460)
+shape = SubResource("SegmentShape2D_qpv5k")
+
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
 [node name="pause_menu" parent="PauseMenu" instance=ExtResource("6_5842o")]
@@ -736,6 +780,7 @@ offset_bottom = 84.0
 text = "Time 0
 "
 
+<<<<<<< HEAD
 [node name="Level" type="Label" parent="Hud"]
 offset_top = 87.0
 offset_right = 52.0
@@ -838,3 +883,58 @@ scale = Vector2(1, 1)
 shape = SubResource("SegmentShape2D_qpv5k")
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+=======
+[node name="UpgradePopup" type="PopupPanel" parent="Hud"]
+unique_name_in_owner = true
+initial_position = 1
+visible = true
+
+[node name="Button1" type="Button" parent="Hud/UpgradePopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UPG1"
+
+[node name="Button2" type="Button" parent="Hud/UpgradePopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UPG2"
+
+[node name="Button3" type="Button" parent="Hud/UpgradePopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -46.0
+offset_right = 46.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UPG3"
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="pressed" from="Hud/UpgradePopup/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Hud/UpgradePopup/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Hud/UpgradePopup/Button3" to="." method="_on_button_3_pressed"]
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912

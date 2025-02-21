@@ -45,12 +45,17 @@ func die():
 	$Mushroom.play("die_left")
 	
 	await get_tree().create_timer(1.4).timeout
+<<<<<<< HEAD
 	
 	# Call the player's _on_mushroom_enemy_killed() directly
 	if player:
 		player._on_mushroom_enemy_killed()
 		queue_free()
 
+=======
+	emit_signal("enemy_killed")  # Emit the custom signal
+	queue_free()
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 
 # Change Animation State
 func change_state(new_state):
