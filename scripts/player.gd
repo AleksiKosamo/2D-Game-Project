@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Variables
 @onready var health = %Player.get_meta("Health")
 var last_direction = Vector2.ZERO
+<<<<<<< HEAD
 # Player Stats
 var player_level = 1
 var health_base = 100
@@ -14,6 +15,22 @@ var damage_growth_per_level = 2
 var exp = 0
 var exp_to_next_level = 100
 var exp_gain_per_kill = 40
+=======
+<<<<<<< HEAD
+# Player Stats
+var player_level = 1
+var health_base = 100  # Starting health value (adjust this as needed)
+@onready var damage_base = %Player.get_meta("Damage")   # Starting damage value (adjust this as needed)
+var health_growth_per_level = 15  # How much health increases with each level
+var damage_growth_per_level = 2   # How much damage increases with each level
+
+# Experience System
+var exp = 0  # Current EXP
+var exp_to_next_level = 100  # EXP required to level up
+var exp_gain_per_kill = 50  # EXP gained per enemy kill
+=======
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 
 # States
 enum State {
@@ -26,6 +43,13 @@ var current_state = State.IDLE
 
 signal health_depleted
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+const DAMAGE_RATE = 10
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 const MOVE_SPEED = 600.0
 
 # Apply damage and update health
@@ -33,12 +57,28 @@ func apply_damage(delta):
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 
 	if overlapping_mobs.size() > 0:
+<<<<<<< HEAD
 		health -= damage_base * overlapping_mobs.size() * delta
 		%ProgressBar.value = health
 		
 		if health <= 0.0:
 			health = 0.0
 			get_tree().paused = true
+=======
+<<<<<<< HEAD
+		health -= damage_base * overlapping_mobs.size() * delta
+=======
+		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
+		%ProgressBar.value = health
+		
+		if health <= 0.0:
+			health = 0.0  # Prevent going negative
+<<<<<<< HEAD
+			get_tree().paused = true
+=======
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 			%GameOver.visible = true
 
 # Update the player's animations based on the state and direction
@@ -54,16 +94,26 @@ func update_animation():
 
 	# Flip the character horizontally based on the movement direction
 	if last_direction.x < 0:
+<<<<<<< HEAD
 		$Wizard.flip_h = true
 	elif last_direction.x > 0:
 		$Wizard.flip_h = false
+=======
+		$Wizard.flip_h = true  # Flip to the left
+	elif last_direction.x > 0:
+		$Wizard.flip_h = false  # Flip to the right
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 
 	# Play the correct animation
 	$Wizard.play(animation_name)
 
 # Handle movement and state updates
 func _physics_process(delta):
+<<<<<<< HEAD
 
+=======
+	# Get input direction
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = direction * MOVE_SPEED
 	move_and_slide()
@@ -71,19 +121,34 @@ func _physics_process(delta):
 	# Update movement state
 	if direction.length() > 0.0:
 		current_state = State.RUNNING
+<<<<<<< HEAD
 		last_direction.x = direction.x
 	else:
 		current_state = State.IDLE
 
 	# Apply damage
+=======
+		last_direction.x = direction.x  # Set last_direction based on current input
+	else:
+		current_state = State.IDLE
+
+	# Apply damage based on overlapping bodies
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 	apply_damage(delta)
 
 	# Update animation
 	update_animation()
 
+<<<<<<< HEAD
 # Level Up Function
 func level_up():
 	
+=======
+<<<<<<< HEAD
+# Level Up Function
+func level_up():
+	# Increase level by 1
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 	player_level += 1
 	
 	# Increase health and damage based on the level
@@ -96,9 +161,15 @@ func level_up():
 	
 	# Reset EXP to 0 for the next level and set new EXP required for the next level
 	exp = 0
+<<<<<<< HEAD
 	exp_to_next_level = int(exp_to_next_level * 1.2)
 	
 	# Display level-up message
+=======
+	exp_to_next_level = int(exp_to_next_level * 1.2)  # Increase the amount of EXP needed for the next level
+	
+	# Optionally, display level-up message or animation here
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 	%LevelUp.visible = true
 	%LevelUp/LevelUp.text = "Level up! New Level: " + str(player_level)
 	%LevelUp/DamageIncrease.text = "New Health: " + str(health_base)
@@ -107,7 +178,14 @@ func level_up():
 	await get_tree().create_timer(2).timeout
 	%LevelUp.visible = false
 	
+<<<<<<< HEAD
 
+=======
+	# You can also implement a UI update here to reflect the new level, health, and damage stats.
+
+		
+# Example of how to trigger level-up when needed (you could use experience points or a specific condition)
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 func _on_mushroom_enemy_killed() -> void:
 	print("Enemy defeated! Granting EXP...")
 	exp += exp_gain_per_kill
@@ -123,3 +201,12 @@ func _on_mushroom_enemy_killed() -> void:
 func update_exp_bar():
 	%ExpBar.value = exp
 	%ExpBar.max_value = exp_to_next_level
+<<<<<<< HEAD
+=======
+=======
+
+func _on_health_depleted() -> void:
+	get_tree().paused = true
+	%Gameover.Visible = true
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5

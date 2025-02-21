@@ -509,7 +509,11 @@ collision_mask = 3
 script = ExtResource("1_kul2h")
 metadata/Health = 30.0
 metadata/Damage = 15.0
+<<<<<<< HEAD
 metadata/Speed = 200.0
+=======
+metadata/Speed = 250.0
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 
 [node name="Mushroom" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

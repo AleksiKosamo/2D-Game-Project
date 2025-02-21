@@ -508,7 +508,15 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_5xafb")
 metadata/Health = 3.0
+<<<<<<< HEAD
 metadata/Damage = 5.0
+=======
+<<<<<<< HEAD
+metadata/Damage = 5.0
+=======
+metadata/Damage = 0.0
+>>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
+>>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 metadata/Speed = 300.0
 
 [node name="Mushroom" type="AnimatedSprite2D" parent="."]
