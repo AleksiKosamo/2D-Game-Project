@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [gd_scene load_steps=17 format=4 uid="uid://pnhllq6ac702"]
 =======
 <<<<<<< HEAD
@@ -7,6 +8,9 @@
 [gd_scene load_steps=16 format=4 uid="uid://pnhllq6ac702"]
 >>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 >>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
+=======
+[gd_scene load_steps=15 format=4 uid="uid://pnhllq6ac702"]
+>>>>>>> parent of 306a77f (Update)
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_b3lji"]
 [ext_resource type="PackedScene" uid="uid://b5hpfc2nui1ii" path="res://scenes/player.tscn" id="1_pt2pq"]
@@ -14,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://cthjnon8bqw6s" path="res://assets/Texture/TX Plant.png" id="3_5kdvo"]
 [ext_resource type="Texture2D" uid="uid://cyg1tnitug3du" path="res://assets/Texture/TX Props.png" id="4_1fpus"]
 [ext_resource type="PackedScene" uid="uid://uto7cgrhmn63" path="res://scenes/pause_menu.tscn" id="6_5842o"]
-[ext_resource type="PackedScene" uid="uid://l6gdvh1d3bux" path="res://scenes/game_over.tscn" id="7_1a6h0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yi8rp"]
 texture = ExtResource("2_ryt1t")
@@ -702,6 +705,7 @@ tile_map_data = PackedByteArray("AAAOAF0ABAABAAQAAAAOAF4ABAABAAUAAAAOAF8ABAABAAY
 tile_set = SubResource("TileSet_nc5i7")
 
 [node name="Player" parent="." instance=ExtResource("1_pt2pq")]
+<<<<<<< HEAD
 unique_name_in_owner = true
 <<<<<<< HEAD
 metadata/Health = 50.0
@@ -716,6 +720,8 @@ metadata/FireRate = 0.1
 metadata/attack_speed = 0.0
 >>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 >>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
+=======
+>>>>>>> parent of 306a77f (Update)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.55, 0.55)
@@ -762,30 +768,47 @@ z_index = 5
 position = Vector2(-466.2, -460)
 shape = SubResource("SegmentShape2D_qpv5k")
 
+<<<<<<< HEAD
 >>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 >>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+=======
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+>>>>>>> parent of 306a77f (Update)
 
-[node name="pause_menu" parent="PauseMenu" instance=ExtResource("6_5842o")]
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("6_5842o")]
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 visible = false
 
-[node name="GameOver" parent="GameOver" instance=ExtResource("7_1a6h0")]
-process_mode = 3
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.619608)
 
-[node name="Hud" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-
-[node name="RoundLabel" type="Label" parent="Hud"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 21
-text = "Round: 0
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 101
+text = "Game Over
 "
 
+<<<<<<< HEAD
 [node name="EnemiesLeftLabel" type="Label" parent="Hud"]
 offset_top = 31.0
 offset_right = 79.0
@@ -921,57 +944,52 @@ shape = SubResource("SegmentShape2D_qpv5k")
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 =======
 [node name="UpgradePopup" type="PopupPanel" parent="Hud"]
+=======
+[node name="Restart" type="Button" parent="GameOver/ColorRect"]
+>>>>>>> parent of 306a77f (Update)
 unique_name_in_owner = true
-initial_position = 1
-visible = true
-
-[node name="Button1" type="Button" parent="Hud/UpgradePopup"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -46.0
-offset_right = 46.0
-offset_bottom = 46.0
+offset_left = -84.5
+offset_top = 63.0
+offset_right = 84.5
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "UPG1"
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+flat = true
 
-[node name="Button2" type="Button" parent="Hud/UpgradePopup"]
-anchors_preset = 8
+[node name="Quit" type="Button" parent="GameOver/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -46.0
-offset_right = 46.0
-offset_bottom = 46.0
+anchor_bottom = 1.0
+offset_left = -56.5
+offset_top = -180.0
+offset_right = 56.5
+offset_bottom = -103.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "UPG2"
-
-[node name="Button3" type="Button" parent="Hud/UpgradePopup"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -46.0
-offset_right = 46.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "UPG3"
-
-[node name="MainMenu" type="CanvasLayer" parent="."]
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+flat = true
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+<<<<<<< HEAD
 [connection signal="pressed" from="Hud/UpgradePopup/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="Hud/UpgradePopup/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Hud/UpgradePopup/Button3" to="." method="_on_button_3_pressed"]
 >>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
 >>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
+=======
+[connection signal="pressed" from="GameOver/ColorRect/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/Quit" to="." method="_on_quit_pressed"]
+>>>>>>> parent of 306a77f (Update)

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Variables
-@onready var health = %Player.get_meta("Health")
+var health = 100.0
 var last_direction = Vector2.ZERO
 
 # Player Stats
@@ -27,7 +27,7 @@ var current_state = State.IDLE
 
 signal health_depleted
 
-const DAMAGE_RATE = 10
+const DAMAGE_RATE = 10.0
 const MOVE_SPEED = 600.0
 
 # Apply damage and update health
@@ -40,8 +40,12 @@ func apply_damage(delta):
 		
 		if health <= 0.0:
 			health = 0.0  # Prevent going negative
+<<<<<<< HEAD
 			get_tree().paused = true
 			%GameOver.visible = true
+=======
+			health_depleted.emit()
+>>>>>>> parent of 306a77f (Update)
 
 # Update the player's animations based on the state and direction
 func update_animation():
@@ -82,6 +86,7 @@ func _physics_process(delta):
 
 	# Update animation
 	update_animation()
+<<<<<<< HEAD
 
 # Level Up Function
 func level_up():
@@ -129,3 +134,5 @@ func update_exp_bar():
 func _on_health_depleted() -> void:
 	get_tree().paused = true
 	%Gameover.Visible = true
+=======
+>>>>>>> parent of 306a77f (Update)

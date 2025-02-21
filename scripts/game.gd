@@ -1,7 +1,7 @@
 extends Node2D
 
 # Export variables for customization
-@export var round_duration: int = 180  # 3 minutes per round
+@export var round_duration: float = 3  # 2 minutes per round
 @export var total_rounds: int = 100
 @export var spawn_interval: float = 0.1  # Time between enemy spawns
 @export var base_enemies_per_round: int = 5  # Base number of enemies in the first round
@@ -10,16 +10,22 @@ extends Node2D
 @onready var boss_scene = preload("res://scenes/mushroomBoss.tscn")  # Boss enemy scene (larger enemy)
 
 @onready var path_node = %Spawn  # Assign your Path2D in the editor
+<<<<<<< HEAD
 @onready var player = %Player  # Reference to the player node
 
 # HUD Elements
 @onready var round_label = %Hud/RoundLabel  # Assuming the label node is inside a HUD node
 @onready var enemies_left_label = %Hud/EnemiesLeftLabel
 @onready var time_left_label = %Hud/TimeLeftLabel
+=======
+@onready var game_over_ui = %GameOver  # Reference to the Game Over UI
+@onready var play_again_button = %Restart  # Reference to the Play Again button
+>>>>>>> parent of 306a77f (Update)
 
 # State variables
 var current_round: int = 0
 var is_round_active: bool = false
+<<<<<<< HEAD
 var round_time_left: int = 0
 
 
@@ -40,6 +46,14 @@ func update_hud() -> void:
 	time_left_label.text = "Time Left: %d" % round_time_left
 
 
+=======
+
+func _ready() -> void:
+	
+	# Start the game
+	start_next_round()
+
+>>>>>>> parent of 306a77f (Update)
 # Manage rounds
 func start_next_round() -> void:
 	if current_round >= total_rounds:
@@ -48,22 +62,20 @@ func start_next_round() -> void:
 
 	current_round += 1
 	is_round_active = true
-	round_time_left = round_duration
-	update_hud()
-
 	print("Round %d / %d Start!" % [current_round, total_rounds])
 
 	spawn_enemies_for_round()
 	start_round_timer()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 306a77f (Update)
 func start_round_timer() -> void:
+	var round_time_left = round_duration
 	while round_time_left > 0 and is_round_active:
 		await get_tree().create_timer(1.0).timeout
 		round_time_left -= 1
-
-		# Update time on the HUD
-		update_hud()
 
 		# Check if all enemies are dead
 		if get_tree().get_nodes_in_group("enemies").is_empty():
@@ -86,6 +98,7 @@ func end_round() -> void:
 # End Game
 func end_game() -> void:
 	print("All Rounds Complete! Congratulations!")
+<<<<<<< HEAD
 	get_tree().paused = true
 
 
@@ -106,32 +119,55 @@ func spawn_enemies_for_round() -> void:
 			enemy.scale = Vector2(2, 2)
 		else:
 			enemy = enemy_scene.instantiate()
+=======
 
-		# Get a random position along the path
+	# Show the Game Over UI
+	get_tree().paused = true  # Pause the game on Game Over
+
+# Enemy spawning
+func spawn_enemies_for_round() -> void:
+	var enemies_to_spawn = base_enemies_per_round + (current_round - 1) * randi_range(3, 7)  # Scale enemy count per round
+	print("Spawning %d enemies this round!" % enemies_to_spawn)
+
+	for i in range(enemies_to_spawn):
+		if not is_round_active:
+			break  # Stop spawning if the round ends prematurely
+
+		var enemy = enemy_scene.instantiate()
+>>>>>>> parent of 306a77f (Update)
+
+		# Place the enemy at a random position along the path
 		path_node.progress_ratio = randf()
 		enemy.position = path_node.position
 
-		# Add the enemy to the scene and group
+		# Add enemy to the scene
 		add_child(enemy)
+
+		# Add the enemy to the "enemies" group
 		enemy.add_to_group("enemies")
-
-		# Initialize enemy health, damage, and speed if needed
-		if not enemy.has_meta("Health"):
-			enemy.set_meta("Health", 100)
-		if not enemy.has_meta("Damage"):
-			enemy.set_meta("Damage", 10)
-		if not enemy.has_meta("Speed"):
-			enemy.set_meta("Speed", 100)
-
-		# Connect the enemy killed signal
-		enemy.connect("enemy_killed", _on_enemy_killed)
 
 		# Wait before spawning the next enemy
 		await get_tree().create_timer(spawn_interval).timeout
 
+<<<<<<< HEAD
 
 func _on_enemy_killed() -> void:
 	update_hud()  # Update the HUD when an enemy is killed
 	if get_tree().get_nodes_in_group("enemies").is_empty():
 		print("All enemies defeated!")
 		end_round()
+=======
+# Function to handle when the player health is depleted (Game Over)
+func _on_player_health_depleted() -> void:
+	get_tree().paused = true  # Pause the game on Game Over
+	%GameOver.visible = true
+
+
+func _on_restart_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
+>>>>>>> parent of 306a77f (Update)
