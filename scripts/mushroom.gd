@@ -45,24 +45,14 @@ func die():
 	$Mushroom.play("die_left")
 	
 	await get_tree().create_timer(1.4).timeout
-<<<<<<< HEAD
-	
-=======
-<<<<<<< HEAD
-	
+
 	# Call the player's _on_mushroom_enemy_killed() directly
->>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 	if player:
 		player._on_mushroom_enemy_killed()
 		queue_free()
 
-<<<<<<< HEAD
-=======
-=======
 	emit_signal("enemy_killed")  # Emit the custom signal
 	queue_free()
->>>>>>> 306a77f3d74a621e7447a1d32db8e8bad6d7d912
->>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 
 # Change Animation State
 func change_state(new_state):
@@ -81,20 +71,13 @@ func update_animation():
 			$Mushroom.play("idle_left")
 		State.IDLE_RIGHT:
 			$Mushroom.play("idle_right")
-<<<<<<< HEAD
-=======
 		State.DEAD:
-			# Death animation or logic can be handled here
->>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
+			# Death animation or logic can be handled here (optional)
 			pass
 
 # Movement Logic
 func _physics_process(_delta: float) -> void:
-<<<<<<< HEAD
-	if health <= 0:
-=======
 	if health <= 0:  # Skip movement if dead
->>>>>>> 7a58c6f67f764480a41a6746f0f0ae353d87c7d5
 		return
 	
 	var direction = global_position.direction_to(player.global_position)
